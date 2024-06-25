@@ -1,6 +1,6 @@
 {
   "name": "vgloadmore",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vegas-dev/vegas-loadMore.git"
@@ -22,12 +22,10 @@
   },
   "homepage": "https://github.com/vegas-dev/vegas-loadMore#readme",
   "scripts": {
-    "build:css": "node build-css.js",
     "build:js": "rollup -c",
     "postversion": "git push && git push --tags && npm publish --access=public",
     "test": "karma start karma.conf.js",
-    "version": "npm run build:js && npm run build:css && git add .",
-    "watch": "npm-watch"
+    "version": "npm run build:js && git add"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -63,21 +61,5 @@
     "not dead",
     "not op_mini all"
   ],
-  "watch": {
-    "build:css": {
-      "patterns": [
-        "src"
-      ],
-      "extensions": "scss",
-      "quiet": true
-    },
-    "build:js": {
-      "patterns": [
-        "src"
-      ],
-      "extensions": "js",
-      "quiet": true
-    }
-  },
   "dependencies": {}
 }

@@ -23,37 +23,36 @@ class VGLoadMore {
 
 	click(btn, callback) {
 		const _this = this;
-		let params = _this.settings.params;
 
 		btn.onclick = function (event) {
 			let btnText = btn.innerText;
-
-			params = {
-				limit: _this.settings.limit,
-				offset: _this.settings.offset
-			}
 
 			if (callback && 'onClick' in callback) {
 				if (typeof callback.onClick === 'function') callback.onClick(_this, event)
 			}
 
-			_this.run(params, btnText, callback);
+			_this.run(btnText, callback);
 
 			return false;
 		}
 	}
 
-	run(params, btnText, callback) {
+	run(btnText, callback) {
 		const _this = this;
 
-		let xhr = new XMLHttpRequest();
-		xhr.open("GET", _this.settings.route, true);
+		let limit = _this.settings.limit,
+			offset = _this.settings.offset;
+
+		let xhr = new XMLHttpRequest(),
+			route = _this.settings.route + '?limit=' + limit + '&offset=' + offset;
+
+		xhr.open("GET", route, true);
 
 		xhr.onreadystatechange = function () {
 			if (this.readyState === 4 && this.status === 200) {
 				_this.settings.offset = _this.fOffset + _this.settings.offset;
-
 				_this.btn.innerText = btnText;
+
 				if (callback && 'onLoad' in callback) {
 					if (typeof callback.onLoad === 'function') callback.onLoad(_this, this.responseText)
 				}
