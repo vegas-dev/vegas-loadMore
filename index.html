@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vegas Load More</title>
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Main css -->
+	<link href="./dist/vgloadmore.css" rel="stylesheet" type="text/css">
+
+	<!-- tmpl css -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
+	<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link href="./demo/css/demo.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="container">
+	<div class="wrapper">
+		<div class="container">
+			<button class="btn btn-primary" data-route="./core/index.php"
+				data-offset="24"
+				data-limit="24"
+			>
+				Загрузить еще
+			</button>
+			<button class="btn btn-primary" data-route="#"
+				data-offset="0"
+				data-limit="10"
+			>
+				Загрузить еще
+			</button>
+		</div>
+	</div>
+</div>
+
+<script src="./dist/vgloadmore.umd.js"></script>
+<script>
+	let buttons = [...document.querySelectorAll('button')];
+	if (buttons.length) {
+		buttons.forEach(function (btn) {
+			new VGLoadMore(btn, {}, {
+				onLoad: function (self, data) {
+					console.log(self)
+				}
+			});
+		});
+	}
+</script>
+
+</body>
+</html>
