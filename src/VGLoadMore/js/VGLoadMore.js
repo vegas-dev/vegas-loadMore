@@ -1,16 +1,16 @@
 class VGLoadMore {
 	constructor(btn, arg, callback) {
 		this.btn = btn || undefined;
-		this.settings = mergeDeepObject({
-			params: this.btn.dataset.params || {},
-			route: this.btn.dataset.route || '',
-			offset: parseInt(this.btn.dataset.offset) || 0,
-			limit: parseInt(this.btn.dataset.limit) || 12
-		}, arg);
-
-		this.fOffset = this.settings.offset;
 
 		if (this.btn) {
+			this.settings = mergeDeepObject({
+				route: this.btn.dataset.route || '',
+				offset: parseInt(this.btn.dataset.offset) || 0,
+				limit: parseInt(this.btn.dataset.limit) || 12
+			}, arg);
+
+			this.fOffset = this.settings.offset;
+
 			if (this.settings.route) {
 				this.click(this.btn, callback)
 			} else {
